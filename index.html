@@ -116,43 +116,102 @@
 
     const updateMusicButton = () => {
       if (!backgroundMusic || !musicToggle) return;
+
       const muted = backgroundMusic.muted;
       musicToggle.textContent = muted ? '🔇' : '🔊';
-      musicToggle.setAttribute('aria-label', muted ? 'Unmute background music' : 'Mute background music');
+      musicToggle.setAttribute(
+        'aria-label',
+        muted ? 'Unmute background music' : 'Mute background music'
+      );
       musicToggle.setAttribute('aria-pressed', String(muted));
     };
 
-    const tryStartMusic = () => {
+    const startMusic = () => {
       if (!backgroundMusic) return;
-      backgroundMusic.play().then(updateMusicButton).catch(() => {
-        // Browsers may block autoplay with sound. A first user gesture will retry.
-      });
+
+      backgroundMusic.muted = false;
+      backgroundMusic.volume = 0.55;
+
+      const promise = backgroundMusic.play();
+
+      if (promise && typeof promise.catch === 'function') {
+        promise
+          .then(() => updateMusicButton())
+          .catch((error) => {
+            // Autoplay with sound was blocked by the browser.
+            // The next user interaction will retry it.
+            console.log('Autoplay blocked; waiting for user interaction.', error);
+            updateMusicButton();
+          });
+      } else {
+        updateMusicButton();
+      }
     };
 
     if (backgroundMusic) {
+      backgroundMusic.muted = false;
       backgroundMusic.volume = 0.55;
-      tryStartMusic();
 
-      const retryAfterGesture = () => {
+      // Try immediately on page load.
+      startMusic();
+
+      // Retry from a genuine user gesture. This is the important fallback
+      // for Chrome/Edge/Safari autoplay policies.
+      const retryMusic = () => {
         if (backgroundMusic.paused) {
-          backgroundMusic.play().catch(() => {});
+          startMusic();
         }
-        updateMusicButton();
+
+        if (!backgroundMusic.paused) {
+          document.removeEventListener('click', retryMusic);
+          document.removeEventListener('pointerdown', retryMusic);
+          document.removeEventListener('touchstart', retryMusic);
+          document.removeEventListener('keydown', retryMusic);
+        }
       };
 
-      window.addEventListener('click', retryAfterGesture, { once:true });
-      window.addEventListener('touchstart', retryAfterGesture, { once:true, passive:true });
-      window.addEventListener('scroll', retryAfterGesture, { once:true, passive:true });
+      document.addEventListener('click', retryMusic, { passive: true });
+      document.addEventListener('pointerdown', retryMusic, { passive: true });
+      document.addEventListener('touchstart', retryMusic, { passive: true });
+      document.addEventListener('keydown', retryMusic);
     }
 
     if (musicToggle && backgroundMusic) {
       musicToggle.addEventListener('click', (event) => {
         event.stopPropagation();
-        backgroundMusic.muted = !backgroundMusic.muted;
-        if (!backgroundMusic.muted && backgroundMusic.paused) {
-          backgroundMusic.play().catch(() => {});
+
+        // This click is itself a valid user gesture, so always try to start
+        // the track first if it hasn't started.
+        if (backgroundMusic.paused) {
+          backgroundMusic.muted = false;
+          backgroundMusic.volume = 0.55;
+
+          const promise = backgroundMusic.play();
+          if (promise && typeof promise.catch === 'function') {
+            promise.catch((error) => {
+              console.log('Music start failed:', error);
+            });
+          }
+
+          updateMusicButton();
+          return;
         }
+
+        backgroundMusic.muted = !backgroundMusic.muted;
         updateMusicButton();
+      });
+    }
+
+
+    if (backgroundMusic) {
+      backgroundMusic.addEventListener('error', () => {
+        console.error(
+          'Background music could not load. Check that assets/music.mp3 exists and is publicly deployed.'
+        );
+      });
+
+      backgroundMusic.addEventListener('canplay', () => {
+        console.log('Background music loaded successfully:', backgroundMusic.currentSrc);
       });
     }
 

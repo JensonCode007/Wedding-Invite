@@ -20,6 +20,29 @@
     .intro-logo { width:min(700px,88vw); max-height:56vh; object-fit:contain; filter:drop-shadow(0 18px 17px #8d223d55); transform:scale(.14) rotate(-8deg); opacity:0; animation:logo-pop .72s cubic-bezier(.16,1,.3,1) .15s forwards, logo-wiggle .42s ease-in-out .9s 2, logo-leave .55s ease 2.62s forwards; }
     .intro-note { position:absolute; bottom:11%; margin:0; color:var(--deep-pink); font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; opacity:0; animation:note-in .4s ease .85s forwards, logo-leave .42s ease 2.62s forwards; }
     .confetti { position:absolute; inset:0; pointer-events:none; } .confetti i { position:absolute; top:-30px; left:var(--left); width:9px; height:16px; border-radius:2px; background:var(--color); opacity:0; animation:confetti-fall 2.55s cubic-bezier(.25,.7,.35,1) var(--delay) forwards; } .confetti i:nth-child(3n) { width:13px; height:7px; border-radius:50%; } .confetti i:nth-child(4n) { width:7px; height:19px; }
+
+    .music-toggle {
+      position:fixed;
+      z-index:30;
+      right:18px;
+      bottom:18px;
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      padding:0;
+      border:1px solid #ffffffaa;
+      border-radius:50%;
+      color:#fff9ef;
+      background:#54202fcc;
+      box-shadow:0 8px 20px #54202f33;
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      font-size:17px;
+      cursor:pointer;
+      transition:transform .2s ease,background .2s ease;
+    }
+    .music-toggle:hover { transform:translateY(-2px); background:#54202fff; }
     .top-ribbon { height:7px; background:repeating-linear-gradient(90deg,var(--pink) 0 30px,var(--gold) 30px 60px,var(--saffron) 60px 90px); }
     .hero { position:relative; min-height:790px; padding:30px 6vw 66px; isolation:isolate; overflow:hidden; text-align:center; background:radial-gradient(circle at 50% 24%,#fffbd1 0 3%,transparent 27%),linear-gradient(160deg,#ffefe4 0%,#ffd4c4 53%,#f6bd6a 100%); }
     .hero::before,.hero::after { content:"✦  ✧  ✦  ✧  ✦"; position:absolute; color:var(--pink); opacity:.34; font-size:21px; letter-spacing:14px; white-space:nowrap; } .hero::before { top:132px; left:-33px; transform:rotate(-14deg); } .hero::after { right:-43px; bottom:104px; transform:rotate(13deg); }
@@ -34,18 +57,21 @@
     .scroll { display:block; width:max-content; margin:48px auto 0; color:var(--wine); font-size:12px; font-weight:700; letter-spacing:.15em; text-decoration:none; text-transform:uppercase; } .scroll::after { content:"↓"; display:block; margin-top:6px; color:var(--pink); font-size:21px; }
     main { max-width:1100px; margin:auto; padding:94px 22px; } .section-label { margin:0 0 10px; color:var(--pink); font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; } h2 { margin:0; color:var(--deep-pink); font-family:"Prata",serif; font-size:clamp(35px,6vw,62px); font-weight:400; line-height:1.1; }
     .couple { display:grid; grid-template-columns:1fr 75px 1fr; gap:22px; align-items:center; margin-top:54px; text-align:center; } .person { padding:39px 20px 30px; border:1px solid #edb69a; border-radius:100px 100px 15px 15px; background:#fffaf3; } .avatar { display:grid; place-items:center; width:90px; height:90px; margin:-79px auto 17px; border:5px solid #fffaf3; border-radius:50%; color:white; background:var(--pink); box-shadow:0 0 0 2px var(--pink); font-family:"Prata",serif; font-size:36px; } .person:last-child .avatar { background:var(--deep-pink); box-shadow:0 0 0 2px var(--deep-pink); } .person h3 { margin:0; font-family:"Prata",serif; font-size:30px; font-weight:400; } .person p { margin:8px 0 0; color:#7a4b50; font-size:14px; } .and { color:var(--pink); font-family:"Yatra One",cursive; font-size:52px; }
-    .photo-journey { width:100vw; margin-top:100px; margin-left:calc(50% - 50vw); } .photo-scroll-stage { position:relative; height:180vh; } .photo-sticky { position:sticky; top:0; z-index:2; padding-top:6px; } .photo-journey-head { display:flex; align-items:end; justify-content:space-between; gap:20px; max-width:1100px; margin:0 auto 24px; padding:0 22px; } .photo-journey-head p { max-width:300px; margin:0; color:#7a4b50; font-size:14px; line-height:1.55; text-align:right; } .photo-carousel { position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:15px; width:100%; height:clamp(440px,60vh,680px); overflow:hidden; padding:3px; background:linear-gradient(135deg,#f6e2c9,#eab873); box-shadow:0 18px 35px #8a38432b; } .photo-carousel::after { content:"Scroll to wander through their memories"; position:absolute; z-index:3; right:16px; bottom:13px; padding:7px 10px; border-radius:99px; color:white; background:#512132bb; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; backdrop-filter:blur(5px); } .photo-window { position:relative; overflow:hidden; } .photo-track { display:grid; gap:15px; will-change:transform; } .photo-card { position:relative; margin:0; height:380px; overflow:hidden; background:linear-gradient(145deg,#e9648b,#ffcc9d); } .photo-card:nth-child(4n+2) { background:linear-gradient(145deg,#f5a12e,#f8df82); } .photo-card:nth-child(4n+3) { background:linear-gradient(145deg,#6b4aa2,#d790be); } .photo-card:nth-child(4n+4) { background:linear-gradient(145deg,#e55557,#f7ad8a); } .photo-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; } .photo-placeholder { position:absolute; inset:0; display:grid; place-items:center; padding:16px; color:#fff9ef; font-size:12px; font-weight:700; letter-spacing:.12em; line-height:1.55; text-align:center; text-shadow:0 1px 4px #4f193655; text-transform:uppercase; } .photo-card.has-photo .photo-placeholder { opacity:0; }
+    .photo-journey { width:100vw; margin-top:100px; margin-left:calc(50% - 50vw); } .photo-scroll-stage { position:relative; height:180vh; } .photo-sticky { position:sticky; top:0; z-index:2; padding-top:6px; } .photo-journey-head { display:flex; align-items:end; justify-content:space-between; gap:20px; max-width:1100px; margin:0 auto 24px; padding:0 22px; } .photo-journey-head p { max-width:300px; margin:0; color:#7a4b50; font-size:14px; line-height:1.55; text-align:right; } .photo-carousel { position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:15px; width:100%; height:clamp(440px,60vh,680px); overflow:hidden; padding:3px; background:linear-gradient(135deg,#f6e2c9,#eab873); box-shadow:0 18px 35px #8a38432b; } .photo-carousel::after { content:"Scroll to wander through their memories"; position:absolute; z-index:3; right:16px; bottom:13px; padding:7px 10px; border-radius:99px; color:white; background:#512132bb; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; backdrop-filter:blur(5px); } .photo-window { position:relative; overflow:hidden; } .photo-track { display:grid; gap:15px; will-change:transform; } .photo-card { position:relative; margin:0; overflow:hidden; background:linear-gradient(145deg,#e9648b,#ffcc9d); } .photo-card:nth-child(4n+2) { background:linear-gradient(145deg,#f5a12e,#f8df82); } .photo-card:nth-child(4n+3) { background:linear-gradient(145deg,#6b4aa2,#d790be); } .photo-card:nth-child(4n+4) { background:linear-gradient(145deg,#e55557,#f7ad8a); } .photo-card img { display:block; width:100%; height:auto; } .photo-placeholder { display:grid; place-items:center; min-height:160px; padding:16px; color:#fff9ef; font-size:12px; font-weight:700; letter-spacing:.12em; line-height:1.55; text-align:center; text-shadow:0 1px 4px #4f193655; text-transform:uppercase; } .photo-card.has-photo .photo-placeholder { display:none; }
     .sangeeth { padding:76px 6vw; background:var(--deep-pink); color:white; } .sangeeth-inner { max-width:1056px; margin:auto; } .sangeeth h2 { color:var(--gold); } .sangeeth .section-label { color:#ffbd70; }
     .gulabi { position:relative; display:grid; grid-template-columns:1fr auto 1fr; gap:24px; align-items:center; margin-top:36px; padding:34px 38px; overflow:hidden; border:1px solid #ffb7c4; border-radius:20px; color:#5b1c30; background:radial-gradient(circle at 8% 100%,#fff1e3 0 1%,transparent 19%),radial-gradient(circle at 98% 7%,#fff1e3 0 1%,transparent 20%),linear-gradient(120deg,#ffccd2,#f9a8b7); } .gulabi::before,.gulabi::after { content:"✿"; position:absolute; color:#f47d9d; font-size:104px; opacity:.35; } .gulabi::before { bottom:-47px; left:-20px; } .gulabi::after { top:-47px; right:-20px; } .gulabi-rose,.gulabi-title,.gulabi-time { position:relative; z-index:1; } .gulabi-rose { font-size:54px; } .gulabi-title { text-align:center; } .gulabi-title p { margin:0 0 5px; font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; } .gulabi-title h3 { margin:0; font-family:"Prata",serif; font-size:clamp(28px,4vw,44px); font-weight:400; line-height:1.15; } .gulabi-time { text-align:center; font-size:14px; line-height:1.6; } .gulabi-time b { display:block; font-size:17px; } .calendar-button { display:block; width:max-content; margin:20px auto 0; padding:13px 20px; border:1px solid #ffcfda; border-radius:99px; color:#fff9ef; background:var(--pink); box-shadow:0 5px 0 #9d2551; font-size:13px; font-weight:700; letter-spacing:.04em; text-decoration:none; transition:transform .2s ease,box-shadow .2s ease; } .calendar-button:hover { transform:translateY(-2px); box-shadow:0 7px 0 #9d2551; }
     .venue { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; padding:106px 0; } .venue-art { position:relative; min-height:285px; overflow:hidden; border-radius:160px 160px 22px 22px; background:linear-gradient(155deg,#f7c749,#ef7b65); } .venue-art::before { content:"✿"; position:absolute; top:30px; right:34px; color:#fff0b1; font-size:76px; } .venue-art::after { content:"♡"; position:absolute; bottom:-77px; left:19%; color:var(--pink); font-size:290px; } .venue-copy p { color:#70434a; font-size:17px; line-height:1.7; } .map-button { display:inline-block; margin-top:8px; padding:13px 20px; border-radius:99px; color:white; background:var(--pink); font-size:13px; font-weight:700; letter-spacing:.05em; text-decoration:none; transition:transform .2s ease,background .2s ease; } .map-button:hover { background:var(--deep-pink); transform:translateY(-2px); }
     .rsvp { margin:0 22px 80px; padding:64px 26px; border-radius:26px; color:white; background:linear-gradient(125deg,#ef805d,#d13273); text-align:center; } .rsvp h2 { color:#fff8e9; } .rsvp p { max-width:480px; margin:16px auto 0; font-size:16px; line-height:1.6; } footer { padding:22px; color:#81554d; font-size:12px; letter-spacing:.08em; text-align:center; text-transform:uppercase; }
     .motion-ready .reveal { opacity:0; transform:translateY(26px); transition:opacity .65s ease,transform .65s ease; } .motion-ready .reveal.is-visible { opacity:1; transform:none; }
     @keyframes logo-pop { 0% { opacity:0; transform:scale(.14) rotate(-8deg); } 68% { opacity:1; transform:scale(1.11) rotate(2deg); } 100% { opacity:1; transform:scale(1) rotate(0); } } @keyframes logo-wiggle { 0%,100% { transform:scale(1) rotate(0); } 25% { transform:scale(1.02) rotate(-2deg); } 75% { transform:scale(1.02) rotate(2deg); } } @keyframes logo-leave { to { opacity:0; transform:scale(1.35); filter:blur(8px); } } @keyframes intro-out { to { visibility:hidden; opacity:0; pointer-events:none; } } @keyframes sparkle { 0% { opacity:0; scale:.4; } 70% { opacity:.8; scale:1.15; } 100% { opacity:.38; scale:1; } } @keyframes note-in { to { opacity:1; } } @keyframes confetti-fall { 0% { opacity:0; transform:translate3d(0,-30px,0) rotate(0); } 12% { opacity:1; } 100% { opacity:0; transform:translate3d(var(--drift),92vh,0) rotate(var(--spin)); } } @keyframes rise { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } } @keyframes dhol-in { from { opacity:0; transform:perspective(400px) rotateX(4deg) scale(.78); } to { opacity:1; transform:perspective(400px) rotateX(4deg) scale(1); } } @keyframes dhol-sway { 0%,100% { transform:perspective(400px) rotateX(4deg) rotate(-1deg); } 50% { transform:perspective(400px) rotateX(4deg) rotate(1deg) translateY(-4px); } } @keyframes petal-spin { to { rotate:360deg; } }
-    @media(max-width:700px) { .intro-logo { width:86vw; max-height:42vh; }.intro-note { bottom:15%; font-size:9px; }.hero { min-height:670px; padding:20px 18px 50px; }.nav { justify-content:center; }.nav a { display:none; }.eyebrow { margin-top:54px; font-size:10px; letter-spacing:.13em; }.tagline { max-width:315px; font-size:16px; }.save-date { padding:10px 13px; font-size:10px; }.hero-logo { width:78vw; margin-top:41px; }.scroll { margin-top:36px; }.couple { grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr); gap:7px; margin:72px 0 0; }.person { min-height:170px; padding:28px 7px 18px; border-radius:54px 54px 14px 14px; }.avatar { width:63px; height:63px; margin:-58px auto 12px; border-width:4px; font-size:27px; }.person h3 { font-size:21px; }.person p { font-size:11px; line-height:1.35; }.and { z-index:2; margin:0; font-size:37px; }.photo-journey { margin-top:78px; }.photo-scroll-stage { height:145vh; }.photo-journey-head { display:block; margin-bottom:14px; padding:0 4vw; }.photo-journey-head p { margin-top:10px; text-align:left; }.photo-carousel { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; height:min(68vh,560px); padding:3px; }.photo-window:nth-child(3) { display:none; }.photo-track { gap:10px; }.photo-card { height:min(50vh,420px); }.photo-placeholder { padding:8px; font-size:9px; letter-spacing:.08em; }.photo-carousel::after { right:8px; bottom:8px; padding:5px 7px; font-size:7px; }.gulabi,.venue { grid-template-columns:1fr; }.gulabi { gap:12px; padding:29px 18px; }.gulabi-rose { display:none; }.sangeeth { padding-inline:22px; }.venue { gap:35px; padding:75px 0; }.venue-art { order:2; min-height:210px; }.rsvp { margin-inline:0; border-radius:0; } }
+    @media(max-width:700px) { .intro-logo { width:86vw; max-height:42vh; }.intro-note { bottom:15%; font-size:9px; }.hero { min-height:670px; padding:20px 18px 50px; }.nav { justify-content:center; }.nav a { display:none; }.eyebrow { margin-top:54px; font-size:10px; letter-spacing:.13em; }.tagline { max-width:315px; font-size:16px; }.save-date { padding:10px 13px; font-size:10px; }.hero-logo { width:78vw; margin-top:41px; }.scroll { margin-top:36px; }.couple { grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr); gap:7px; margin:72px 0 0; }.person { min-height:170px; padding:28px 7px 18px; border-radius:54px 54px 14px 14px; }.avatar { width:63px; height:63px; margin:-58px auto 12px; border-width:4px; font-size:27px; }.person h3 { font-size:21px; }.person p { font-size:11px; line-height:1.35; }.and { z-index:2; margin:0; font-size:37px; }.photo-journey { margin-top:78px; }.photo-scroll-stage { height:145vh; }.photo-journey-head { display:block; margin-bottom:14px; padding:0 4vw; }.photo-journey-head p { margin-top:10px; text-align:left; }.photo-carousel { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; height:min(68vh,560px); padding:3px; }.photo-window:nth-child(3) { display:none; }.photo-track { gap:10px; }.photo-placeholder { min-height:120px; padding:8px; font-size:9px; letter-spacing:.08em; }.photo-carousel::after { right:8px; bottom:8px; padding:5px 7px; font-size:7px; }.gulabi,.venue { grid-template-columns:1fr; }.gulabi { gap:12px; padding:29px 18px; }.gulabi-rose { display:none; }.sangeeth { padding-inline:22px; }.venue { gap:35px; padding:75px 0; }.venue-art { order:2; min-height:210px; }.rsvp { margin-inline:0; border-radius:0; } }
     @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; }.intro { display:none; }.motion-ready .reveal { opacity:1; transform:none; }.photo-scroll-stage { height:auto !important; }.photo-sticky { position:relative !important; } }
   </style>
 </head>
 <body>
+
+  <audio id="backgroundMusic" src="assets/music.mp3" autoplay loop preload="auto"></audio>
+  <button class="music-toggle" id="musicToggle" type="button" aria-label="Mute background music" aria-pressed="false">🔊</button>
   <div class="intro" aria-hidden="true"><div class="confetti"><i style="--left:8%;--drift:14vw;--spin:540deg;--delay:.1s;--color:#ffd33e"></i><i style="--left:17%;--drift:-6vw;--spin:-520deg;--delay:.28s;--color:#d34876"></i><i style="--left:28%;--drift:9vw;--spin:490deg;--delay:.04s;--color:#5e37a3"></i><i style="--left:38%;--drift:-11vw;--spin:-450deg;--delay:.35s;--color:#f59a34"></i><i style="--left:51%;--drift:7vw;--spin:520deg;--delay:.15s;--color:#d34876"></i><i style="--left:62%;--drift:-8vw;--spin:-490deg;--delay:.42s;--color:#ffd33e"></i><i style="--left:70%;--drift:12vw;--spin:570deg;--delay:.08s;--color:#5e37a3"></i><i style="--left:79%;--drift:-10vw;--spin:-540deg;--delay:.31s;--color:#f59a34"></i><i style="--left:89%;--drift:4vw;--spin:470deg;--delay:.2s;--color:#d34876"></i></div><img class="intro-logo" src="assets/wedding-unit-splash.png" alt="" /><p class="intro-note">Gopika &amp; Sooraj invite you</p></div>
   <div class="top-ribbon"></div>
   <header class="hero">
@@ -58,11 +84,58 @@
     <div class="hero-logo" aria-label="Ghodi ki sawari"><img src="assets/wedding-unit-splash.png" alt="Colourful Ghodi ki sawari sign" /></div>
     <a class="scroll" href="#sangeeth">Come celebrate</a>
   </header>
-  <main class="reveal"><p class="section-label">The happy couple</p><h2>A story made for dancing.</h2><section class="couple" aria-label="The couple"><article class="person"><div class="avatar">G</div><h3>Gopika</h3><p>Ready to dance the night away</p></article><div class="and">&amp;</div><article class="person"><div class="avatar">S</div><h3>Sooraj</h3><p>Ready to celebrate with you</p></article></section><section class="photo-journey" aria-label="Gopika and Sooraj photo memories"><div class="photo-scroll-stage"><div class="photo-sticky"><div class="photo-journey-head"><div><p class="section-label">A little love story</p><h2>Memories in motion.</h2></div><p>As you scroll, their moments drift in different directions.</p></div><div class="photo-carousel" data-photo-carousel><!-- Add your ten photos as assets/couple-01.jpeg through assets/couple-10.jpeg. The script at the bottom of the page lays all 10 out across the 3 columns below. --><div class="photo-window"><div class="photo-track"></div></div><div class="photo-window"><div class="photo-track"></div></div><div class="photo-window"><div class="photo-track"></div></div></div></div></div></section></main>
+  <main class="reveal"><p class="section-label">The happy couple</p><h2>A story made for dancing.</h2><section class="couple" aria-label="The couple"><article class="person"><div class="avatar">G</div><h3>Gopika</h3><p>Ready to dance the night away</p></article><div class="and">&amp;</div><article class="person"><div class="avatar">S</div><h3>Sooraj</h3><p>Ready to celebrate with you</p></article></section><section class="photo-journey" aria-label="Gopika and Sooraj photo memories"><div class="photo-scroll-stage"><div class="photo-sticky"><div class="photo-journey-head"><div><p class="section-label">A little love story</p><h2>Memories in motion.</h2></div><p>As you scroll, their moments drift in different directions.</p></div><div class="photo-carousel" data-photo-carousel><!-- Add your eleven photos as assets/couple-01.jpeg through assets/couple-11.jpeg. The script at the bottom of the page lays all 10 out across the 3 columns below. --><div class="photo-window"><div class="photo-track"></div></div><div class="photo-window"><div class="photo-track"></div></div><div class="photo-window"><div class="photo-track"></div></div></div></div></div></section></main>
   <section class="sangeeth reveal" id="sangeeth"><div class="sangeeth-inner"><p class="section-label">One special evening</p><h2>Gulabi Sangeeth Night</h2><article class="gulabi" aria-label="Gulabi Sangeeth night, 2 September 2026, 6 PM to 8:30 PM"><div class="gulabi-rose">🌹</div><div class="gulabi-title"><p>A music &amp; dance night celebrating</p><h3>Love, Laughter &amp; Togetherness</h3><p>Come dressed in your happiest shades of pink</p></div><div class="gulabi-time"><b>2nd September 2026</b>Starts at<br><b>6:00 PM – 8:30 PM</b></div></article><!-- Update text, dates, location and details in this Google Calendar URL when final event details are ready. --><a class="calendar-button" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Gulabi+Sangeeth+Night+-+Gopika+%26+Sooraj&amp;dates=20260902T180000/20260902T203000&amp;location=Rosewood+Celebration+Hall%2C+123+Celebration+Avenue%2C+Sector+17%2C+Chandigarh&amp;details=An+evening+of+music%2C+dance%2C+love+and+laughter.&amp;ctz=Asia%2FKolkata" target="_blank" rel="noreferrer">Add to Google Calendar +</a></div></section>
   <main><section class="venue reveal" id="venue"><div class="venue-art" aria-hidden="true"></div><div class="venue-copy"><p class="section-label">Venue</p><h2>Sri Mulam Club</h2><p>C.V Raman Pillai Road, Vazhuthacaud<br>Sasthamangalam P.O<br>Thiruvanthapuram, Kerala 695010</p><p>Join us for an evening of music, laughter and a whole lot of dancing.</p><!-- Replace the href below with your own Google Maps share link. --><a class="map-button" href="https://maps.app.goo.gl/L75B2jEod4FpVv5g7" target="_blank" rel="noreferrer">Open in Google Maps ↗</a></div></section><section class="rsvp reveal"><p class="section-label" style="color:#ffe49a">Save the date</p><h2>Your presence is our present.</h2><p>We cannot wait to celebrate this one beautiful evening with you.</p></section></main>
   <footer>Made with love &amp; a little bhangra • #GopikaWedsSooraj</footer>
   <script>
+
+    // --- Background music ---
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const musicToggle = document.getElementById('musicToggle');
+
+    const updateMusicButton = () => {
+      if (!backgroundMusic || !musicToggle) return;
+      const muted = backgroundMusic.muted;
+      musicToggle.textContent = muted ? '🔇' : '🔊';
+      musicToggle.setAttribute('aria-label', muted ? 'Unmute background music' : 'Mute background music');
+      musicToggle.setAttribute('aria-pressed', String(muted));
+    };
+
+    const tryStartMusic = () => {
+      if (!backgroundMusic) return;
+      backgroundMusic.play().then(updateMusicButton).catch(() => {
+        // Browsers may block autoplay with sound. A first user gesture will retry.
+      });
+    };
+
+    if (backgroundMusic) {
+      backgroundMusic.volume = 0.55;
+      tryStartMusic();
+
+      const retryAfterGesture = () => {
+        if (backgroundMusic.paused) {
+          backgroundMusic.play().catch(() => {});
+        }
+        updateMusicButton();
+      };
+
+      window.addEventListener('click', retryAfterGesture, { once:true });
+      window.addEventListener('touchstart', retryAfterGesture, { once:true, passive:true });
+      window.addEventListener('scroll', retryAfterGesture, { once:true, passive:true });
+    }
+
+    if (musicToggle && backgroundMusic) {
+      musicToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        backgroundMusic.muted = !backgroundMusic.muted;
+        if (!backgroundMusic.muted && backgroundMusic.paused) {
+          backgroundMusic.play().catch(() => {});
+        }
+        updateMusicButton();
+      });
+    }
+
     document.body.classList.add('motion-ready');
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach((section) => observer.observe(section));
@@ -71,15 +144,15 @@
     const photoCarousel = document.querySelector('[data-photo-carousel]');
     if (photoCarousel && photoStage && photoSticky) {
       const photoTracks = [...photoCarousel.querySelectorAll('.photo-track')];
-      // All 10 photos, shuffled into a different order per column. Place couple-01.jpeg through couple-10.jpeg in assets/.
+      // All 11 photos, shuffled into a different order per column. Place couple-01.jpeg through couple-10.jpeg in assets/.
       const photoOrders = [
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        [10, 8, 6, 4, 2, 9, 7, 5, 3, 1],
-        [3, 7, 1, 9, 5, 10, 2, 8, 4, 6],
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        [11, 9, 7, 5, 3, 1, 10, 8, 6, 4, 2],
+        [3, 8, 1, 10, 5, 11, 2, 9, 4, 7, 6],
       ];
       const photoCard = (number) => {
         const padded = String(number).padStart(2, '0');
-        return `<figure class="photo-card"><img src="assets/couple-${padded}.jpeg" alt="Gopika and Sooraj, photo ${padded}" loading="lazy" onload="this.parentElement.classList.add('has-photo')" onerror="this.remove()"><span class="photo-placeholder">Photo ${padded}<br>Add your image</span></figure>`;
+        return `<figure class="photo-card"><img src="assets/couple-${padded}.jpeg" alt="Gopika and Sooraj, photo ${padded}" loading="lazy" onload="this.parentElement.classList.add('has-photo')" onerror="this.remove()"><span class="photo-placeholder">Photo ${padded}<br>Add assets/couple-${padded}.jpeg</span></figure>`;
       };
       photoTracks.forEach((track, index) => { track.innerHTML = photoOrders[index].map(photoCard).join(''); });
 
@@ -100,6 +173,7 @@
         movePhotoColumns();
         addEventListener('scroll', movePhotoColumns, { passive: true });
         addEventListener('resize', movePhotoColumns);
+        photoCarousel.querySelectorAll('img').forEach((img) => img.addEventListener('load', movePhotoColumns));
       }
     }
   </script>
